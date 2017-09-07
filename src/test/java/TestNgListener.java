@@ -3,10 +3,12 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 import org.testng.annotations.Listeners;
 
+import java.util.Date;
+
 @Listeners
 public class TestNgListener extends TestListenerAdapter {
   public void onTestStart(ITestResult result) {
-    System.out.println("onTestStart");
+    System.out.println(String.format("method %s", result.getMethod().getMethodName()));
   }
 
   public void onTestSuccess(ITestResult result) {
@@ -19,10 +21,9 @@ public class TestNgListener extends TestListenerAdapter {
   }
 
   public void onStart(ITestContext context) {
-    System.out.println(String.format("%s onStart on %s", context.getName(), context.getHost()));
+    System.out.println(String.format("Testing Started for %s @%s", context.getName(), new Date()));
   }
 
   public void onFinish(ITestContext context) {
-    System.out.println(String.format("%s onFinish on %s", context.getName(), context.getHost()));
-  }
+    System.out.println(String.format("Testing Finished for %s @%s", context.getName(), new Date()));  }
 }
